@@ -2,14 +2,16 @@
 
 session_start();
 
-require_once 'database.php';
+require 'database.php';
 
-$tasks = $database->prepare("INSERT INTO tasks (user_id, name) VALUES (?,?)");
+$tasks = $database->prepare("INSERT INTO tasks (user_id, name, status) VALUES (?,?,?)");
 
 $donus = $tasks->execute([
 
-    $_SESSION['id']=>'user_id',
-    $_POST['name']=>'name'
+    $_SESSION['id'],
+    $_POST['name'],
+    true
+
 
 ]);
 

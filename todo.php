@@ -4,6 +4,10 @@ require 'database.php';
 
 session_start();
 
+$user_id = (int)$_SESSION['id'];
+
+$tasks = $database ->query("SELECT * FROM tasks WHERE user_id=".$user_id)->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <<html>
@@ -47,12 +51,14 @@ session_start();
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6">
-            <div class="input-group">
-
-                <button class="btn btn-danger" type="button">Delete</button>
-                <button class="btn btn-success" type="button">Düzenle</button>
-                <button class="btn btn-info" type="button">Yapıldı</button>
+            <?php foreach ($tasks as $item): ?>
+            <div class="alert alert-primary">
+                <?= $item['name'] ?>
             </div>
+            <button class="btn btn-danger btn-sm" type="button">Sil</button>
+            <button class="btn btn-success btn-sm" type="button">Düzenle</button>
+            <button class="btn btn-info btn-sm" type="button">Yapıldı</button>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
@@ -87,7 +93,7 @@ session_start();
 
 <?php endif; ?>
 
-
+<script src="https://kit.fontawesome.com/dcd8b6ca00.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
 </body>
 </html>
