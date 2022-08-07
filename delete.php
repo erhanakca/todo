@@ -2,7 +2,9 @@
 
 require 'database.php';
 
-$database->exec("DELETE FROM tasks WHERE user_id");
+$id = $_GET['id'];
+
+$database->exec("DELETE FROM tasks WHERE id=" . $id);
 
 header('Location: todo.php');
 

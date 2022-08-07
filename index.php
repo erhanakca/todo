@@ -10,7 +10,7 @@
         </div>
         <div class="col-lg-6 sagkolon">
             <h4>Hesap Oluşturmak İçin</h4>
-            <a href="singup.php"><button class="btn btn-success" type="button"><h2>HEMEN ÜYE OL</h2></button></a>
+            <a href="singup.php" class="btn btn-success"><h2>HEMEN ÜYE OL</h2></a>
             <hr>
             <h4>Zaten Bir Hesabınız Var mı?</h4>
             <a href="login.php"><button class="btn btn-success" type="button"><h2>GİRİŞ YAP</h2></button></a>

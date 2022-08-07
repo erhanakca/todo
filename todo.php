@@ -52,14 +52,21 @@ $tasks = $database ->query("SELECT * FROM tasks WHERE user_id=".$user_id)->fetch
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-12 offset-0">
                 <?php foreach ($tasks as $item): ?>
-                    <div class="alert alert-info d-flex justify-content-between">
+                <?php if($item['status'] == false) : ?>
+                    <div class="alert alert-danger d-flex justify-content-between text-decoration-line-trough">
+                <?php else: ?>
+                        <div class="alert alert-info d-flex justify-content-between">
+                <?php endif; ?>
                         <div class="w-auto">
+                            <?php if ($item['status'] == true) : ?>
                             <div class="fs-4"><?=$item['name']?></div>
+                            <?php else: ?>
+                                <div class="fs-4 ">tamamlandı: <?=$item['name']?></div>
+                            <?php endif; ?>
                         </div>
                         <div class="w-auto">
-                            <a href="delete.php" class="btn btn-sm btn-danger">Delete</a>
-                            <a href="edit.php" class="btn btn-sm btn-info">Edit</a>
-                            <a href="completed.php" class="btn btn-sm btn-secondary">Completed</a>
+                            <a href="delete.php?id= <?php echo $item['id']?>" class="btn btn-sm btn-danger">Delete</a>
+                            <a href="completed.php?id= <?php $item['id']?>" class="btn btn-sm btn-secondary">Completed</a>
                         </div>
                     </div>
                 <?php endforeach; ?>
