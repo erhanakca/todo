@@ -61,12 +61,19 @@ $tasks = $database ->query("SELECT * FROM tasks WHERE user_id=".$user_id)->fetch
                             <?php if ($item['status'] == true) : ?>
                             <div class="fs-4"><?=$item['name']?></div>
                             <?php else: ?>
-                                <div class="fs-4 ">tamamlandı: <?=$item['name']?></div>
+                            <div class="fs-4  text-decoration-line-through"><?=$item['name']?></div>
                             <?php endif; ?>
                         </div>
+                            <?php if ($item['status'] == true): ?>
                         <div class="w-auto">
                             <a href="delete.php?id= <?php echo $item['id']?>" class="btn btn-sm btn-danger">Delete</a>
-                            <a href="completed.php?id= <?php $item['id']?>" class="btn btn-sm btn-secondary">Completed</a>
+                            <a href="completed.php?id= <?php echo $item['id']?>" class="btn btn-sm btn-secondary ">Completed</a>
+                            <?php else: ?>
+                        <div class="w-auto">
+                            <a href="delete.php?id= <?php echo $item['id']?>" class="btn btn-sm btn-danger">Delete</a>
+                            <a href="completed.php?id= <?php echo $item['id']?>" class="btn btn-sm btn-warning ">RollBack</a>
+                        </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
